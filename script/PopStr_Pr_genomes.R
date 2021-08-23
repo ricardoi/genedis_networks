@@ -20,9 +20,12 @@ colnames(gd) <- rownames(gd)
 class(gd)
 gd[1:4,1:4]
 
-gdnet <- melt(as.matrix(gd)) 
+gd1 <- as.data.frame(gd$`7612-A1`)
+rownames(gd1) <- rownames(gd)
+gdnet <- melt(as.matrix(gd1)) 
 colnames(gdnet) <- c("From", "To", "value")
 head(gdnet)
+gdnet$To <- rep("7612-A",dim(gdnet)[1],)
 #
 gdnet0 <- gdnet[!rowSums(gdnet[-c(1:2)] == 0) >= 1,] #removing 0's
 gdnet <- gdnet0[gdnet0[-c(1:2)] > 85,] # setting up the treshold
