@@ -53,6 +53,5 @@ CounColor <- unique(cbind(V(igraph)$Country, V(igraph)$color))
 E(igraph)$xx <- as.numeric(unlist(E(igraph))) # make the categories of x into numeric values for color ramp
 E(igraph)$color <- rbPal(10)[cut(as.numeric(E(igraph)$xx),breaks = 10)]
 
-
 plot(igraph,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',edge.curved=T, edge.width=0.2, layout=layout_with_kk)
 # legend(x= 0.9, y= -0.9, CounColor[,1], pch=21,  col="black", pt.bg=CounColor[,2], pt.cex=2,cex=.8, bty="n", ncol=1)
