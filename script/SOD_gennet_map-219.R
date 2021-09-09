@@ -47,7 +47,7 @@ igraph<-graph_from_data_frame(x, directed = FALSE)
 rbPal <- colorRampPalette(c("green", "yellow", "red"))
 counPal <- colorRampPalette(c("red", "yellow", "blue", "white", "brown"), bias = 1)
 V(igraph)$size=5
-# V(igraph)$xx <- as.numeric(as.factor(V(igraph))) # make the categories of x into numeric values for color ramp
+V(igraph)$xx <- as.numeric(as.factor(V(igraph))) # make the categories of x into numeric values for color ramp
 # V(igraph)$color <- counPal(10)[cut(as.numeric(V(igraph)$xx),breaks = 10)]
 CounColor <- unique(cbind(V(igraph)$Country, V(igraph)$color))
 E(igraph)$xx <- as.numeric(unlist(E(igraph))) # make the categories of x into numeric values for color ramp
@@ -77,10 +77,10 @@ NorthAmerica <- worldmap[which(worldmap$REGION == "North America"),] # grab nort
 plot(igraph,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',edge.curved=T, edge.width=0.2, layout=layout_with_kk)
 
 
-plot(NorthAmerica, xlim = c(-124.45, -124.2), ylim = c(42.05, 42.4))
+plot(NorthAmerica, xlim = c(-124.5, -124.3), ylim = c(42.1, 42.325))
 lo <- as.matrix(dat[,c(6,5)]) ## set the layout to our coordinates
 plot(igraph, vertex.size = 0.5, edge.arrow.size =.05, vertex.label.cex= 0.3,
-     vertex.label.color = 'black', edge.width = 0.2, edge.curved = TRUE, layout = lo,
+     vertex.label.color = "", edge.width = 0.2, edge.curved = TRUE, layout = lo,
      xlim = c(-124.45, -124.2), ylim = c(42.05, 42.4), rescale = FALSE, add = TRUE)
       ## very important to set layout to "lo" (or whatever you named it above), rescale = FALSE, add = TRUE
 
