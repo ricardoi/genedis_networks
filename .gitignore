@@ -1,5 +1,6 @@
 #ignore files in data
-data/
+data/*.txt
+data/*.csv
 #eu1_gendists.txt
 #hazel_population_data.wgs.csv
 #eu1_gendists_long.txt
