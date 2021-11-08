@@ -5,6 +5,7 @@
 
 #- setting working directory
 setwd("~/Box/OSU/P_ramorum/data/")
+setwd("~/git_local/genedis_networks/data/")
 
 #----functions
 
@@ -67,6 +68,7 @@ hist(eu1_gdnet$value, breaks= 100, xlim = c(0,0.125))
 abline(v=0.01, col="red")
 hist(na1_gdnet$value, breaks= 100, xlim = c(0,0.125))
 abline(v=0.01, col="red")
+dev.off()
 #----- Network
 x = eu1_gdnet
 y = na1_gdnet
@@ -108,4 +110,38 @@ plot(GRPHy,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black
      edge.curved = F, edge.width=1, layout=layout_with_kk)
 dev.off()
 
+#----- loading SOD metadata
+data <- read.csv("hazel_population_data.csv")
+data.wgs <- read.csv("hazel_population_data.wgs.csv")
+#' subsetting data sets
+dat <- data[data$ID %in% data.wgs$ID,]
+dat
+
+## put it on a map
+library(rworldmap)
+library(rworldxtra)
+
+worldmap <- getMap(resolution = "high") #grab the world map
+NorthAmerica <- worldmap[which(worldmap$REGION == "North America"),] # grab north america
+
+plot(GRPHx,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',edge.curved=T, edge.width=0.2, layout=layout_with_kk)
+plot(GRPHy,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',edge.curved=T, edge.width=0.2, layout=layout_with_kk)
+
+
+lox <- dat[which(dat$ID %in% eu1_mac_tre$tip.label),] |>
+  select(Lon, Lat)
+loy <- dat[which(dat$ID %in% na1_mac_tre$tip.label),] |>
+      select(Lon, Lat)
+# Network map plot
+plot(NorthAmerica, xlim = c(-124.5, -124.25), ylim = c(42.275, 42.35))
+plot(GRPHx, vertex.size = 0.5, edge.arrow.size =.05, vertex.label.cex= 0.3,
+     vertex.label.color = "", edge.width = 0.2, edge.curved = TRUE, layout = lox,
+     xlim = c(-124.45, -124.2), ylim = c(42.1, 42.325), rescale = FALSE, add = TRUE)
+
+plot(NorthAmerica, xlim = c(-124.5, -124.1), ylim = c(42.08, 42.1))
+plot(GRPHy, vertex.size = 0.5, edge.arrow.size =.05, vertex.label.cex= 0.3,
+     vertex.label.color = "", edge.width = 0.2, edge.curved = TRUE, layout = loy,
+     xlim = c(-124.45, -124.2), ylim = c(42.1, 42.325), rescale = FALSE, add = TRUE)
+
+## very important to set layout to "lo" (or whatever you named it above), rescale = FALSE, add = TRUE
 
