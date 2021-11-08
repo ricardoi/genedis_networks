@@ -25,9 +25,10 @@ gd[1:4,1:4]
 
 hist(as.matrix(gd))
 
-eu1_mac_tre <- aboot(as.matrix(gdm),
+eu1_mac_tre <- aboot(as.matrix(gd),
                      sample = 100, showtree = T, tree = "nj")
 class(eu1_mac_tre)
+
 
 all.dis <- get_all_distances_to_root(eu1_mac_tre)
 node.dis <- all.dis[(132+1):(132+eu1_mac_tre$Nnode)]
