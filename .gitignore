@@ -7,3 +7,4 @@ data/*.csv
 #na1_gendists.txt
 #hazel_population_data.csv
 #na1_gendists_long.txt
+.Rproj.user
