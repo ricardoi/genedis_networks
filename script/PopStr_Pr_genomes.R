@@ -4,7 +4,7 @@
 #'
 
 #- setting working directory
-setwd("~/Box/OSU/P_ramorum/data/")
+# setwd("~/Box/OSU/P_ramorum/data/")
 setwd("~/git_local/genedis_networks/data/")
 
 #----functions
@@ -37,8 +37,8 @@ class(na1)
 # Minimum Spaning Tree
 MSTEdges(eu1, plot = T)
 MSTEdges(na1, plot = T)
-# MSTLength(eu1)
-# MSTLength(na1)
+MSTLength(eu1)
+MSTLength(na1)
 
 # ploting distances
 par(mfrow = c(2, 1))
@@ -62,40 +62,54 @@ colnames(eu1_gdnet) <- c("From", "To", "value")
 na1_gdnet <- as.data.frame(na1_mac_tre$edge)
 na1_gdnet$length <- as.numeric(na1_mac_tre$edge.length)
 colnames(na1_gdnet) <- c("From", "To", "value")
-
+# ploting genetic distances
 par(mfrow=c(2,1))
 hist(eu1_gdnet$value, breaks= 100, xlim = c(0,0.125))
 abline(v=0.01, col="red")
 hist(na1_gdnet$value, breaks= 100, xlim = c(0,0.125))
 abline(v=0.01, col="red")
 dev.off()
+#--------------------------------
+#----- loading SOD metadata
+data <- read.csv("hazel_population_data.csv")
+data.wgs <- read.csv("hazel_population_data.wgs.csv")
+#' subsetting data sets
+dat <- data[data$ID %in% data.wgs$ID,]
+dat
 #----- Network
 x = eu1_gdnet
 y = na1_gdnet
 GRPHx <- graph_from_data_frame(x, directed = FALSE)
 GRPHy <- graph_from_data_frame(y, directed = FALSE)
+# adding colors and attributes
 rbPal <- colorRampPalette(c("grey", "black"))
 counPal <- colorRampPalette(c("red", "yellow", "blue", "white", "brown"), bias = 1)
 V(GRPHx)$size=5
 V(GRPHy)$size=5
-# V(GRPH)$xx <- as.numeric(as.factor(V(GRPH))) # make the categories of x into numeric values for color ramp
-# V(igraph)$color <- counPal(10)[cut(as.numeric(V(GRPH)$xx),breaks = 10)]
-CounColorx <- unique(cbind(V(GRPHx)$Country, V(GRPHx)$color))
-CounColory <- unique(cbind(V(GRPHy)$Country, V(GRPHy)$color))
+
+yearx <- dat[which(dat$ID %in% eu1_mac_tre$tip.label),]|>
+                  select(Year) |>
+                  unlist() |>
+                  as.numeric() # make the categories of x into numeric values for color ramp
+V(GRPHx)$year <- yearx
+V(igraph)$color <- counPal(10)[cut(as.numeric(V(GRPHx)$year),breaks = 10)]
+# CounColorx <- unique(cbind(V(GRPHx)$Country, V(GRPHx)$color))
+# CounColory <- unique(cbind(V(GRPHy)$Country, V(GRPHy)$color))
 
 E(GRPHx)$xx <- x$value # make the categories of x into numeric values for color ramp
 E(GRPHy)$xx <- y$value # make the categories of x into numeric values for color ramp
 # E(igraph)$color <- rbPal(10)[cut(as.numeric(E(igraph)$xx),breaks = 3)]
 
-# Identify isolated nodes
+# ploting branch lenght
 par(mfrow=c(2,1))
-hist(E(GRPHx)$xx, breaks= 100, xlim = c(0,0.125))
-abline(v=0.01, col="red")
-hist(E(GRPHy)$xx, breaks= 100, xlim = c(0,0.125))
-abline(v=0.01, col="red")
+hist(E(GRPHx)$xx, breaks= 100, xlim = c(0,0.02))
+abline(v=0.005, col="red")
+hist(E(GRPHy)$xx, breaks= 100, xlim = c(0,0.02))
+abline(v=0.005, col="red")
+dev.off()
 # Select conditionals
-condx  <- E(GRPHx)[E(GRPHx)$xx >=  0.01]
-condy  <- E(GRPHy)[E(GRPHy)$xx >=  0.01]
+condx  <- E(GRPHx)[E(GRPHx)$xx >=  0.005]
+condy  <- E(GRPHy)[E(GRPHy)$xx >=  0.005]
 # Remove edges nodes
 GRPHx <- delete.edges(GRPHx, condx)
 GRPHy <- delete.edges(GRPHy, condy)
@@ -110,13 +124,6 @@ plot(GRPHy,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black
      edge.curved = F, edge.width=1, layout=layout_with_kk)
 dev.off()
 
-#----- loading SOD metadata
-data <- read.csv("hazel_population_data.csv")
-data.wgs <- read.csv("hazel_population_data.wgs.csv")
-#' subsetting data sets
-dat <- data[data$ID %in% data.wgs$ID,]
-dat
-
 ## put it on a map
 library(rworldmap)
 library(rworldxtra)
@@ -124,8 +131,11 @@ library(rworldxtra)
 worldmap <- getMap(resolution = "high") #grab the world map
 NorthAmerica <- worldmap[which(worldmap$REGION == "North America"),] # grab north america
 
+
 plot(GRPHx,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',edge.curved=T, edge.width=0.2, layout=layout_with_kk)
+
 plot(GRPHy,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',edge.curved=T, edge.width=0.2, layout=layout_with_kk)
+
 
 
 lox <- dat[which(dat$ID %in% eu1_mac_tre$tip.label),] |>
@@ -138,10 +148,10 @@ plot(GRPHx, vertex.size = 0.5, edge.arrow.size =.05, vertex.label.cex= 0.3,
      vertex.label.color = "", edge.width = 0.2, edge.curved = TRUE, layout = lox,
      xlim = c(-124.45, -124.2), ylim = c(42.1, 42.325), rescale = FALSE, add = TRUE)
 
-plot(NorthAmerica, xlim = c(-124.5, -124.1), ylim = c(42.08, 42.1))
+plot(NorthAmerica, xlim = c(-124.5, -124.1), ylim = c(42.125, 42.129))
 plot(GRPHy, vertex.size = 0.5, edge.arrow.size =.05, vertex.label.cex= 0.3,
      vertex.label.color = "", edge.width = 0.2, edge.curved = TRUE, layout = loy,
-     xlim = c(-124.45, -124.2), ylim = c(42.1, 42.325), rescale = FALSE, add = TRUE)
+     xlim = c(-124.45, -124.2), ylim = c(42.1, 42.2), rescale = FALSE, add = TRUE)
 
 ## very important to set layout to "lo" (or whatever you named it above), rescale = FALSE, add = TRUE
-
+GRPHx
