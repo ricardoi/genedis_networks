@@ -16,7 +16,7 @@ library(ape)
 library(igraph)
 library(poppr)
 library(TreeTools)
-
+library(dendextend)
 
 #------
 eu1 <- read.csv("eu1_gendists_snpsubset.txt", header = T, sep = " ") |>
@@ -44,7 +44,7 @@ MSTLength(na1)
 par(mfrow = c(2, 1))
 hist(eu1[eu1 > 0], xlim = c(0,0.35), breaks = 100)
 hist(na1[na1 > 0], xlim = c(0,0.35), breaks = 100)
-
+dev.off()
 eq <- function(x) (x*1)
 # recalculating distances
 eu1_mac_tre <- aboot(as.matrix(eu1), dist = eq ,
@@ -52,6 +52,23 @@ eu1_mac_tre <- aboot(as.matrix(eu1), dist = eq ,
 # recalculating distances
 na1_mac_tre <- aboot(as.matrix(na1), dist = eq ,
                      sample = 100, showtree = T, tree = "nj")
+
+# tree manipulation
+library("phylogram")
+eu1d <- as.dendrogram(eu1_mac_tre)
+eu1.dend <- eu1d |>
+  dendextend::get_nodes_attr("members") # node's height
+na1d <- as.dendrogram(na1_mac_tre)
+na1.dend <- na1d |>
+  dendextend::get_nodes_attr("members") # node's height
+par(mfrow=c(2,1))
+hist(eu1.dend, breaks= 100, xlim = c(0,75))
+abline(v=010, col="red")
+hist(na1.dend, breaks= 100, xlim = c(0,75))
+abline(v=010, col="red")
+dev.off()
+
+
 
 # genetic distance from-to network
 eu1_gdnet <- as.data.frame(eu1_mac_tre$edge)
@@ -72,9 +89,11 @@ dev.off()
 #--------------------------------
 #----- loading SOD metadata
 data <- read.csv("hazel_population_data.csv")
+dim(data)
 data.wgs <- read.csv("hazel_population_data.wgs.csv")
+dim(data.wgs)
 #' subsetting data sets
-dat <- data[data$ID %in% data.wgs$ID,]
+dat = data.wgs[data$ID %in% data.wgs$ID,]
 dat
 #----- Network
 x = eu1_gdnet
