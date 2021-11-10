@@ -34,6 +34,15 @@ na1_gd <- matrix(as.numeric(na1), nrow = dim(na1)[1])
 colnames(na1) <- rownames(na1) <- names
 na1[1:4,1:4]
 class(na1)
+#----- loading SOD metadata
+data <- read.csv("hazel_population_data.csv")
+dim(data)
+data.wgs <- read.csv("hazel_population_data.wgs.csv")
+dim(data.wgs)
+#' subsetting data sets
+dat = data.wgs[data$ID %in% data.wgs$ID,]
+dat
+
 # Minimum Spaning Tree
 MSTEdges(eu1, plot = T)
 MSTEdges(na1, plot = T)
@@ -57,7 +66,7 @@ na1_mac_tre <- aboot(as.matrix(na1), dist = eq ,
 library("phylogram")
 eu1d <- as.dendrogram(eu1_mac_tre)
 eu1.dend <- eu1d |>
-  dendextend::get_nodes_attr("members") # node's height
+  dendextend::get_nodes_attr("members") # node's membership
 na1d <- as.dendrogram(na1_mac_tre)
 na1.dend <- na1d |>
   dendextend::get_nodes_attr("members") # node's height
@@ -68,6 +77,76 @@ hist(na1.dend, breaks= 100, xlim = c(0,75))
 abline(v=010, col="red")
 dev.off()
 
+library("treeman")
+
+y1 <- dat |>
+  subset(Year == 2016 & ID %in% eu1_mac_tre$tip.label)|>
+  select(ID, Year)
+y2 <- dat |>
+      subset(Year == 2017 & ID %in% eu1_mac_tre$tip.label)|>
+  select(ID, Year)
+y3 <- dat |>
+  subset(Year == 2018 & ID %in% eu1_mac_tre$tip.label)|>
+  select(ID, Year)
+y4 <- dat |>
+  subset(Year == 2019 & ID %in% eu1_mac_tre$tip.label)|>
+  select(ID, Year)
+
+datos <- dat |>
+          subset( ID %in% eu1_mac_tre$tip.label)
+cmatrix = matrix(0, ncol = 5, nrow = nrow(datos))
+  for (i in 1:nrow(datos)){
+        cmatrix[i,1] <- datos[i,1]
+        cmatrix[i,2] <- ifelse(datos[i,1] %in% y1$ID, yes = 1, no = 0)
+        cmatrix[i,3] <- ifelse(datos[i,1] %in% y2$ID, yes = 1, no = 0)
+        cmatrix[i,4] <- ifelse(datos[i,1] %in% y3$ID, yes = 1, no = 0)
+        cmatrix[i,5] <- ifelse(datos[i,1] %in% y4$ID, yes = 1, no = 0)
+  }
+rownames(cmatrix) <- cmatrix[,1]
+cmatrix <- cmatrix[,c(2:5)] |>
+            t()
+cmatrix <- apply(cmatrix, 2, FUN=as.numeric)
+rownames(cmatrix) <- c(2016, 2017, 2018, 2019)
+head(cmatrix)
+
+eu1_gc <- commplot(cmatrix, eu1_mac_tre, groups=c(1:4), no.margin=FALSE)
+
+# NA1
+y1 <- dat |>
+  subset(Year == 2001 & ID %in% na1_mac_tre$tip.label)|>
+  select(ID, Year)
+y2 <- dat |>
+  subset(Year == 2002 & ID %in% na1_mac_tre$tip.label)|>
+  select(ID, Year)
+y3 <- dat |>
+  subset(Year == 2003 & ID %in% na1_mac_tre$tip.label)|>
+  select(ID, Year)
+y4 <- dat |>
+  subset(Year == 2004 & ID %in% na1_mac_tre$tip.label)|>
+  select(ID, Year)
+y5 <- dat |>
+  subset(Year == 2005 & ID %in% na1_mac_tre$tip.label)|>
+  select(ID, Year)
+
+datos <- dat |>
+  subset( ID %in% na1_mac_tre$tip.label)
+cmatrix = matrix(0, ncol = 6, nrow = nrow(datos))
+for (i in 1:nrow(datos)){
+  cmatrix[i,1] <- datos[i,1]
+  cmatrix[i,2] <- ifelse(datos[i,1] %in% y1$ID, yes = 1, no = 0)
+  cmatrix[i,3] <- ifelse(datos[i,1] %in% y2$ID, yes = 1, no = 0)
+  cmatrix[i,4] <- ifelse(datos[i,1] %in% y3$ID, yes = 1, no = 0)
+  cmatrix[i,5] <- ifelse(datos[i,1] %in% y4$ID, yes = 1, no = 0)
+  cmatrix[i,6] <- ifelse(datos[i,1] %in% y5$ID, yes = 1, no = 0)
+}
+rownames(cmatrix) <- cmatrix[,1]
+cmatrix <- cmatrix[,c(2:6)] |>
+  t()
+cmatrix <- apply(cmatrix, 2, FUN=as.numeric)
+rownames(cmatrix) <- c(2001, 2002, 2003, 2004, 2005)
+head(cmatrix)
+
+na1_gc <- commplot(cmatrix, na1_mac_tre, groups=c(1:5), no.margin=FALSE)
 
 
 # genetic distance from-to network
@@ -87,14 +166,6 @@ hist(na1_gdnet$value, breaks= 100, xlim = c(0,0.125))
 abline(v=0.01, col="red")
 dev.off()
 #--------------------------------
-#----- loading SOD metadata
-data <- read.csv("hazel_population_data.csv")
-dim(data)
-data.wgs <- read.csv("hazel_population_data.wgs.csv")
-dim(data.wgs)
-#' subsetting data sets
-dat = data.wgs[data$ID %in% data.wgs$ID,]
-dat
 #----- Network
 x = eu1_gdnet
 y = na1_gdnet
