@@ -145,8 +145,34 @@ cmatrix <- cmatrix[,c(2:6)] |>
 cmatrix <- apply(cmatrix, 2, FUN=as.numeric)
 rownames(cmatrix) <- c(2001, 2002, 2003, 2004, 2005)
 head(cmatrix)
+library(MoreTreeTools)
 
-na1_gc <- commplot(cmatrix, na1_mac_tre, groups=c(1:5), no.margin=FALSE)
+tree <- compute.brlen(na1_mac_tre, method = "Grafen")
+tree$edge.length <- tree$edge.length/getSize(tree, "rtt")
+plot(tree)
+commplot(cmatrix, na1_mac_tre, groups=c(1:5), no.margin=TRUE)
+
+tree_tm <- as(na1_mac_tre, 'TreeMan')
+c1_ids <- colnames(cmatrix)[cmatrix[1, ] > 0]
+c2_ids <- colnames(cmatrix)[cmatrix[2, ] > 0]
+c3_ids <- colnames(cmatrix)[cmatrix[3, ] > 0]
+c4_ids <- colnames(cmatrix)[cmatrix[4, ] > 0]
+c5_ids <- colnames(cmatrix)[cmatrix[5, ] > 0]
+
+obs_ovrlp <- calcOvrlp(tree_tm, c1_ids, c2_ids, c3_ids, c4_ids, c5_ids)
+iterations <- 99
+null <- rep(NA, iterations)
+
+for(i in 1:iterations) {
+  # cat('....[', i, ']\n', sep= "")
+  null_tips <- sample(tree_tm['tips'], length(c5_ids))
+  null[i] <- calcOvrlp(tree_tm, c5_ids, null_tips)
+}
+p_value <- sum(obs_ovrlp >= null)/iterations
+hist(null, main="", xlab="", ylab="", xlim=c(0,1), ylim=c(0,20))
+abline(v=obs_ovrlp, col="red")
+mtext(paste0("P-value: ", signif(p_value, 3)))
+cat("P-value: ", signif(p_value, 3), "\n", sep="")
 
 
 # genetic distance from-to network
