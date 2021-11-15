@@ -109,7 +109,7 @@ cmatrix <- apply(cmatrix, 2, FUN=as.numeric)
 rownames(cmatrix) <- c(2016, 2017, 2018, 2019)
 head(cmatrix)
 
-eu1_gc <- commplot(cmatrix, eu1_mac_tre, groups=c(1:4), no.margin=FALSE)
+commplot(cmatrix, eu1_mac_tre, groups=c(1:4), no.margin=FALSE)
 
 # NA1
 y1 <- dat |>
@@ -145,11 +145,14 @@ cmatrix <- cmatrix[,c(2:6)] |>
 cmatrix <- apply(cmatrix, 2, FUN=as.numeric)
 rownames(cmatrix) <- c(2001, 2002, 2003, 2004, 2005)
 head(cmatrix)
-library(MoreTreeTools)
 
+library(MoreTreeTools)
+# breaking up commplot
 tree <- compute.brlen(na1_mac_tre, method = "Grafen")
 tree$edge.length <- tree$edge.length/getSize(tree, "rtt")
 plot(tree)
+#
+
 commplot(cmatrix, na1_mac_tre, groups=c(1:5), no.margin=TRUE)
 
 tree_tm <- as(na1_mac_tre, 'TreeMan')
@@ -174,15 +177,26 @@ abline(v=obs_ovrlp, col="red")
 mtext(paste0("P-value: ", signif(p_value, 3)))
 cat("P-value: ", signif(p_value, 3), "\n", sep="")
 
+library(MoreTreeTools)
+# breaking up commplot
+# EU1
+eu1_tree <- compute.brlen(eu1_mac_tre, method = "Grafen")
+eu1_tree$edge.length <- eu1_tree$edge.length/getSize(eu1_tree, "rtt")
+plot(eu1_tree)
+# NA1
+na1_tree <- compute.brlen(na1_mac_tre, method = "Grafen")
+na1_tree$edge.length <- na1_tree$edge.length/getSize(na1_tree, "rtt")
+plot(na1_tree)
+
 
 # genetic distance from-to network
-eu1_gdnet <- as.data.frame(eu1_mac_tre$edge)
-eu1_gdnet$length <- as.numeric(eu1_mac_tre$edge.length)
+eu1_gdnet <- as.data.frame(eu1_tree$edge) # original entry eu1_mac_tre$edge
+eu1_gdnet$length <- as.numeric(eu1_tree$edge.length)
 colnames(eu1_gdnet) <- c("From", "To", "value")
 
 # genetic distance from-to network
-na1_gdnet <- as.data.frame(na1_mac_tre$edge)
-na1_gdnet$length <- as.numeric(na1_mac_tre$edge.length)
+na1_gdnet <- as.data.frame(na1_tree$edge) # original entry
+na1_gdnet$length <- as.numeric(na1_tree$edge.length)
 colnames(na1_gdnet) <- c("From", "To", "value")
 # ploting genetic distances
 par(mfrow=c(2,1))
@@ -218,14 +232,14 @@ E(GRPHy)$xx <- y$value # make the categories of x into numeric values for color 
 
 # ploting branch lenght
 par(mfrow=c(2,1))
-hist(E(GRPHx)$xx, breaks= 100, xlim = c(0,0.02))
+hist(E(GRPHx)$xx, breaks= 100, xlim = c(0,0.1))
 abline(v=0.005, col="red")
-hist(E(GRPHy)$xx, breaks= 100, xlim = c(0,0.02))
+hist(E(GRPHy)$xx, breaks= 100, xlim = c(0,0.1))
 abline(v=0.005, col="red")
 dev.off()
 # Select conditionals
-condx  <- E(GRPHx)[E(GRPHx)$xx >=  0.005]
-condy  <- E(GRPHy)[E(GRPHy)$xx >=  0.005]
+condx  <- E(GRPHx)[E(GRPHx)$xx >=  0.02]
+condy  <- E(GRPHy)[E(GRPHy)$xx >=  0.02]
 # Remove edges nodes
 GRPHx <- delete.edges(GRPHx, condx)
 GRPHy <- delete.edges(GRPHy, condy)
@@ -248,9 +262,11 @@ worldmap <- getMap(resolution = "high") #grab the world map
 NorthAmerica <- worldmap[which(worldmap$REGION == "North America"),] # grab north america
 
 
-plot(GRPHx,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',edge.curved=T, edge.width=0.2, layout=layout_with_kk)
+plot(GRPHx,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',
+     edge.curved=F, edge.width=0.2, layout=layout_with_kk)
 
-plot(GRPHy,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',edge.curved=T, edge.width=0.2, layout=layout_with_kk)
+plot(GRPHy,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',
+     edge.curved=F, edge.width=0.2, layout=layout_with_kk)
 
 
 
@@ -260,13 +276,13 @@ loy <- dat[which(dat$ID %in% na1_mac_tre$tip.label),] |>
       select(Lon, Lat)
 # Network map plot
 plot(NorthAmerica, xlim = c(-124.5, -124.25), ylim = c(42.275, 42.35))
-plot(GRPHx, vertex.size = 0.5, edge.arrow.size =.05, vertex.label.cex= 0.3,
-     vertex.label.color = "", edge.width = 0.2, edge.curved = TRUE, layout = lox,
+plot(GRPHx, vertex.size = 0.1, edge.arrow.size =.05, vertex.label.cex= 0.3,
+     vertex.label.color = "", edge.width = 0.2, edge.curved = F, layout = lox,
      xlim = c(-124.45, -124.2), ylim = c(42.1, 42.325), rescale = FALSE, add = TRUE)
 
 plot(NorthAmerica, xlim = c(-124.5, -124.1), ylim = c(42.125, 42.129))
-plot(GRPHy, vertex.size = 0.5, edge.arrow.size =.05, vertex.label.cex= 0.3,
-     vertex.label.color = "", edge.width = 0.2, edge.curved = TRUE, layout = loy,
+plot(GRPHy, vertex.size = 0.1, edge.arrow.size =.05, vertex.label.cex= 0.3,
+     vertex.label.color = "", edge.width = 0.2, edge.curved = F, layout = loy,
      xlim = c(-124.45, -124.2), ylim = c(42.1, 42.2), rescale = FALSE, add = TRUE)
 
 ## very important to set layout to "lo" (or whatever you named it above), rescale = FALSE, add = TRUE
