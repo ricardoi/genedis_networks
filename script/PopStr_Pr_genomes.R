@@ -15,8 +15,10 @@ library(tidyverse)
 library(ape)
 library(igraph)
 library(poppr)
-library(TreeTools)
-library(dendextend)
+# library(TreeTools)
+# library(dendextend)
+library("treeman")
+library(MoreTreeTools)
 
 #------
 eu1 <- read.csv("eu1_gendists_snpsubset.txt", header = T, sep = " ") |>
@@ -43,11 +45,11 @@ dim(data.wgs)
 dat = data.wgs[data$ID %in% data.wgs$ID,]
 dat
 
-# Minimum Spaning Tree
-MSTEdges(eu1, plot = T)
-MSTEdges(na1, plot = T)
-MSTLength(eu1)
-MSTLength(na1)
+# # Minimum Spaning Tree
+# MSTEdges(eu1, plot = T)
+# MSTEdges(na1, plot = T)
+# MSTLength(eu1)
+# MSTLength(na1)
 
 # ploting distances
 par(mfrow = c(2, 1))
@@ -77,7 +79,7 @@ hist(na1.dend, breaks= 100, xlim = c(0,75))
 abline(v=010, col="red")
 dev.off()
 
-library("treeman")
+# library("treeman")
 
 y1 <- dat |>
   subset(Year == 2016 & ID %in% eu1_mac_tre$tip.label)|>
@@ -146,11 +148,10 @@ cmatrix <- apply(cmatrix, 2, FUN=as.numeric)
 rownames(cmatrix) <- c(2001, 2002, 2003, 2004, 2005)
 head(cmatrix)
 
-library(MoreTreeTools)
-# breaking up commplot
-tree <- compute.brlen(na1_mac_tre, method = "Grafen")
-tree$edge.length <- tree$edge.length/getSize(tree, "rtt")
-plot(tree)
+# # breaking up commplot
+# tree <- compute.brlen(na1_mac_tre, method = "Grafen")
+# tree$edge.length <- tree$edge.length/getSize(tree, "rtt")
+# plot(tree)
 #
 
 commplot(cmatrix, na1_mac_tre, groups=c(1:5), no.margin=TRUE)
@@ -177,12 +178,12 @@ abline(v=obs_ovrlp, col="red")
 mtext(paste0("P-value: ", signif(p_value, 3)))
 cat("P-value: ", signif(p_value, 3), "\n", sep="")
 
-library(MoreTreeTools)
-# breaking up commplot
+# library(MoreTreeTools)
 # EU1
 eu1_tree <- compute.brlen(eu1_mac_tre, method = "Grafen")
 eu1_tree$edge.length <- eu1_tree$edge.length/getSize(eu1_tree, "rtt")
 plot(eu1_tree)
+
 # NA1
 na1_tree <- compute.brlen(na1_mac_tre, method = "Grafen")
 na1_tree$edge.length <- na1_tree$edge.length/getSize(na1_tree, "rtt")
@@ -193,11 +194,15 @@ plot(na1_tree)
 eu1_gdnet <- as.data.frame(eu1_tree$edge) # original entry eu1_mac_tre$edge
 eu1_gdnet$length <- as.numeric(eu1_tree$edge.length)
 colnames(eu1_gdnet) <- c("From", "To", "value")
+commplot(cmatrix, eu1_mac_tre, groups=c(1:4), no.margin=TRUE)
+
 
 # genetic distance from-to network
 na1_gdnet <- as.data.frame(na1_tree$edge) # original entry
 na1_gdnet$length <- as.numeric(na1_tree$edge.length)
 colnames(na1_gdnet) <- c("From", "To", "value")
+commplot(cmatrix, na1_mac_tre, groups=c(1:5), no.margin=TRUE, )
+
 # ploting genetic distances
 par(mfrow=c(2,1))
 hist(eu1_gdnet$value, breaks= 100, xlim = c(0,0.125))
@@ -233,13 +238,13 @@ E(GRPHy)$xx <- y$value # make the categories of x into numeric values for color 
 # ploting branch lenght
 par(mfrow=c(2,1))
 hist(E(GRPHx)$xx, breaks= 100, xlim = c(0,0.1))
-abline(v=0.005, col="red")
+abline(v=0.02, col="red")
 hist(E(GRPHy)$xx, breaks= 100, xlim = c(0,0.1))
-abline(v=0.005, col="red")
+abline(v=0.02, col="red")
 dev.off()
 # Select conditionals
-condx  <- E(GRPHx)[E(GRPHx)$xx >=  0.02]
-condy  <- E(GRPHy)[E(GRPHy)$xx >=  0.02]
+condx  <- E(GRPHx)[E(GRPHx)$xx >  0.04]
+condy  <- E(GRPHy)[E(GRPHy)$xx >  0.04]
 # Remove edges nodes
 GRPHx <- delete.edges(GRPHx, condx)
 GRPHy <- delete.edges(GRPHy, condy)
@@ -248,10 +253,10 @@ E(GRPHx)$color <- rbPal(10)[cut(as.numeric(E(GRPHx)$xx),breaks = 10)]
 E(GRPHy)$color <- rbPal(10)[cut(as.numeric(E(GRPHy)$xx),breaks = 10)]
 
 plot(GRPHx,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',
-     edge.curved = F, edge.width=1, layout=layout_with_kk)
+     edge.curved = F, edge.width=1, layout=layout_with_fr)
 # legend(x= 0.9, y= -0.9, CounColor[,1], pch=21,  col="black", pt.bg=CounColor[,2], pt.cex=2,cex=.8, bty="n", ncol=1)
 plot(GRPHy,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',
-     edge.curved = F, edge.width=1, layout=layout_with_kk)
+     edge.curved = F, edge.width=1, layout=layout_with_fr)
 dev.off()
 
 ## put it on a map
