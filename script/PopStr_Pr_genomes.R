@@ -48,7 +48,7 @@ dat = data.wgs[data$ID %in% data.wgs$ID,]
 dat
 
 # ploting distances subset VCF 10% using ______
-par(mfrow = c(2, 1))
+par(mfrow = c(1,2))
 hist(eu1[eu1 > 0], xlim = c(0,0.35), breaks = 100)
 hist(na1[na1 > 0], xlim = c(0,0.35), breaks = 100)
 dev.off()
@@ -165,7 +165,7 @@ colnames(na1_gdnet) <- c("From", "To", "value")
 commplot(ymatrix, na1_mac_tre, groups=c(1:5), no.margin=TRUE, )
 
 # plotting branch length distances
-par(mfrow=c(2,1))
+par(mfrow=c(1,2))
 hist(eu1_gdnet$value, breaks= 100, xlim = c(0,0.125))
 abline(v=0.07, col="red")
 hist(na1_gdnet$value, breaks= 100, xlim = c(0,0.125))
@@ -204,7 +204,7 @@ E(GRPHy)$xx <- y$value # make the categories of x into numeric values for color 
 # E(igraph)$color <- rbPal(10)[cut(as.numeric(E(igraph)$xx),breaks = 3)]
 
 # ploting branch lenght
-par(mfrow=c(2,1))
+par(mfrow=c(1,2))
 hist(E(GRPHx)$xx, breaks= 100, xlim = c(0,0.1))
 abline(v=0.08, col="red")
 hist(E(GRPHy)$xx, breaks= 100, xlim = c(0,0.1))
