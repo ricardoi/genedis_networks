@@ -152,6 +152,15 @@ na1_tree <- compute.brlen(na1_mac_tre, method = "Grafen")
 na1_tree$edge.length <- na1_tree$edge.length/getSize(na1_tree, "rtt")
 plot(na1_tree, cex=0.4)
 
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+library(phyloseq)
+eu1_net <- make_network(eu1_tree, distance=eu1, max.dist = 0.01)
+eu1_net
+
+#-------------------------------------------------------------
+#-------------------------------------------------------------
+
 # branch length distance from-to network
 eu1_gdnet <- as.data.frame(eu1_tree$edge) # original entry eu1_mac_tre$edge
 eu1_gdnet$length <- as.numeric(eu1_tree$edge.length)
