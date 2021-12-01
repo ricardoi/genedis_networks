@@ -153,6 +153,7 @@ na1_tree$edge.length <- na1_tree$edge.length/getSize(na1_tree, "rtt")
 plot(na1_tree, cex=0.4)
 
 #-------------------------------------------------------------
+# https://web.stanford.edu/class/bios221/book/Chap-Graphs.html
 #-------------------------------------------------------------
 library(phyloseq)
 eu1_net <- make_network(eu1_tree, distance=eu1, max.dist = 0.01)
