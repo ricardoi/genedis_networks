@@ -11,7 +11,7 @@ Variant calling sequences (VCFs)
 |PR-102_v3 | NA1 |
 |PR-15-019 | EU1 |
 
-## Genetic Distances 
+## Genetic Distances
 Genetic distances of _P. ramorum_ calulated by N. Carleson
 ![Genetic Distances](https://github.com/ricardoi/genedis_networks/blob/main/Figures/Genetic_distances_subset10_.png)
 
@@ -27,7 +27,13 @@ Trees rescaled using the Grafen method
 Visualizing the branch length distribution of _P. ramorum_ trees
 ![Branch length](https://github.com/ricardoi/genedis_networks/blob/main/Figures/EU1-NA1_branchlenghts_Grafen_tree.png)
 
-##
+## Phylogenetic network
+The phylogenetic tree was visualized as a network, tips and nodes are indicated in circles.
+![Phylonet](https://github.com/ricardoi/genedis_networks/blob/main/Figures/EU1-NA1_phylogenetic_network_full.png)
+
+## Phylogenetic network prunned
+Removing branches with distances less than 0.08
+![prunned network]
 
 > Notes:
 `$PATH` to folders `/dfs/Grunwald_Lab/lab_collabs/diagnostic_assays/genome_data/`
