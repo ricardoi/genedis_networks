@@ -58,7 +58,7 @@ dev.off()
 eq <- function(x) (x*1)
 #
 eu1_mac_tre <- aboot(as.matrix(eu1), dist = eq ,
-                     sample = 100, showtree = T, tree = "nj", )
+                     sample = 100, showtree = T, tree = "nj" )
 # recalculating distances
 na1_mac_tre <- aboot(as.matrix(na1), dist = eq ,
                      sample = 100, showtree = T, tree = "nj")
@@ -155,13 +155,14 @@ plot(na1_tree, cex=0.4)
 #-------------------------------------------------------------
 # https://web.stanford.edu/class/bios221/book/Chap-Graphs.html
 #-------------------------------------------------------------
-library(phyloseq)
-eu1_net <- make_network(eu1_tree, distance=eu1, max.dist = 0.01)
-eu1_net
+
+# library(treeman)
+#eu1_trees <- as(eu1_tree, 'TreeMan')
+# treeman::calcFrPrp(eu1_trees, eu1_trees['tips'])
+# treeman::calcNdsBlnc(eu1_tree, eu1_trees['nds']) # see paper for more
 
 #-------------------------------------------------------------
 #-------------------------------------------------------------
-
 # branch length distance from-to network
 eu1_gdnet <- as.data.frame(eu1_tree$edge) # original entry eu1_mac_tre$edge
 eu1_gdnet$length <- as.numeric(eu1_tree$edge.length)
@@ -183,10 +184,27 @@ abline(v=0.07, col="red")
 dev.off()
 #--------------------------------
 #----- Network
-x = eu1_gdnet
-y = na1_gdnet
-GRPHx <- graph_from_data_frame(x, directed = FALSE)
-GRPHy <- graph_from_data_frame(y, directed = FALSE)
+library(network)
+(eu1_tree_g <- as.network(eu1_tree))
+# EU1
+# plot(eu1_tree_g, vertex.cex = 1:4)
+plot(eu1_tree_g, displaylabels = TRUE)
+library(intergraph)
+GRPHx <- asIgraph(eu1_tree_g)
+V(GRPHx)$vertex.names
+# NA1
+(na1_tree_g <- as.network(na1_tree))
+# plot(eu1_tree_g, vertex.cex = 1:4)
+plot(na1_tree_g, displaylabels = TRUE)
+library(intergraph)
+GRPHy <- asIgraph(na1_tree_g)
+V(GRPHy)$vertex.names
+
+#----- iGraph
+# x = eu1_gdnet
+# y = na1_gdnet
+# GRPHx <- graph_from_data_frame(x, directed = FALSE)
+# GRPHy <- graph_from_data_frame(y, directed = FALSE)
 # adding colors and attributes
 rbPal <- colorRampPalette(c("grey", "black"))
 counPal <- colorRampPalette(c("red", "yellow", "blue", "white", "brown"), bias = 1)
@@ -209,8 +227,8 @@ V(GRPHy)$year <- yeary
 V(GRPHy)$color <- counPal(10)[cut(as.numeric(V(GRPHy)$year),breaks = 10)]
 CounColory <- unique(cbind(V(GRPHy)$year, V(GRPHy)$color))
 
-E(GRPHx)$xx <- x$value # make the categories of x into numeric values for color ramp
-E(GRPHy)$xx <- y$value # make the categories of x into numeric values for color ramp
+E(GRPHx)$xx <- eu1_tree$edge.length # make the edge length into numeric values for color ramp
+E(GRPHy)$xx <- na1_tree$edge.length # make the edge length into numeric values for color ramp
 # E(igraph)$color <- rbPal(10)[cut(as.numeric(E(igraph)$xx),breaks = 3)]
 
 # ploting branch lenght
@@ -224,8 +242,8 @@ dev.off()
 condx  <- E(GRPHx)[E(GRPHx)$xx >  0.08]
 condy  <- E(GRPHy)[E(GRPHy)$xx >  0.08]
 # Remove edges nodes
-GRPHx <- delete.edges(GRPHx, condx)
-GRPHy <- delete.edges(GRPHy, condy)
+GRPHx <- igraph::delete.edges(GRPHx, condx)
+GRPHy <- igraph::delete.edges(GRPHy, condy)
 
 E(GRPHx)$color <- rbPal(10)[cut(as.numeric(E(GRPHx)$xx),breaks = 10)]
 E(GRPHy)$color <- rbPal(10)[cut(as.numeric(E(GRPHy)$xx),breaks = 10)]
