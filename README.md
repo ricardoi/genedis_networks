@@ -39,3 +39,7 @@ The phylogenetic tree was visualized as a network, tips and nodes are indicated 
 ## Phylogenetic network prunned
 Removing branches with distances less than 0.08
 ![prunned network](https://github.com/ricardoi/genedis_networks/blob/main/Figures/PhylogeneticNetwork_prunned_0.08.png)
+
+## Spatial Network
+Visualization of the spatial network for _P.ramorum_ linage EU1 and NA1. Nodes represent isolates (color coded by year), and links represent the phylogenetic relationship between the isolates. Unfortunately, there is no relationship between genetic and geodesic distances.
+![Spatial network](https://github.com/ricardoi/genedis_networks/blob/main/Figures/EU1-NA1_spatial_network.png)
