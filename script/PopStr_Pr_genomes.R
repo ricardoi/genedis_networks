@@ -177,25 +177,26 @@ commplot(ymatrix, na1_mac_tre, groups=c(1:5), no.margin=TRUE, )
 
 # plotting branch length distances
 par(mfrow=c(1,2))
-hist(eu1_gdnet$value, breaks= 100, xlim = c(0,0.125))
+hist(eu1_gdnet$value, breaks= 100, xlim = c(0,0.2), ylim= c(0,170))
 abline(v=0.07, col="red")
-hist(na1_gdnet$value, breaks= 100, xlim = c(0,0.125))
+hist(na1_gdnet$value, breaks= 100, xlim = c(0,0.2), ylim= c(0,170))
 abline(v=0.07, col="red")
 dev.off()
 #--------------------------------
 #----- Network
 library(network)
+library(intergraph)
 (eu1_tree_g <- as.network(eu1_tree))
 # EU1
 # plot(eu1_tree_g, vertex.cex = 1:4)
-plot(eu1_tree_g, displaylabels = TRUE)
+plot(eu1_tree_g, displaylabels = F)
 library(intergraph)
 GRPHx <- asIgraph(eu1_tree_g)
 V(GRPHx)$vertex.names
 # NA1
 (na1_tree_g <- as.network(na1_tree))
 # plot(eu1_tree_g, vertex.cex = 1:4)
-plot(na1_tree_g, displaylabels = TRUE)
+plot(na1_tree_g, displaylabels = F)
 library(intergraph)
 GRPHy <- asIgraph(na1_tree_g)
 V(GRPHy)$vertex.names
@@ -249,7 +250,7 @@ E(GRPHx)$color <- rbPal(10)[cut(as.numeric(E(GRPHx)$xx),breaks = 10)]
 E(GRPHy)$color <- rbPal(10)[cut(as.numeric(E(GRPHy)$xx),breaks = 10)]
 
 plot(GRPHx,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',
-     edge.curved = F, edge.width=1, layout=layout_with_fr)
+     edge.curved = F, edge.width=1, layout=layout_with_fr)#edge.label=V(GRPHx)$vertex.names
 legend(x= 0.9, y= -0.9, legend = CounColorx[,1], pch=21,  col="black", pt.bg=CounColorx[,2], pt.cex=2,cex=.8, bty="n", ncol=1)
 
 plot(GRPHy,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',
@@ -280,7 +281,7 @@ loy <- dat[which(dat$ID %in% na1_mac_tre$tip.label),] |>
 # Network map plot
 plot(NorthAmerica, xlim = c(-124.5, -124.25), ylim = c(42.275, 42.35))
 plot(GRPHx, vertex.size = 0.1, edge.arrow.size =.05, vertex.label.cex= 0.3,
-     vertex.label.color = "", edge.width = 0.2, edge.curved = F, layout = lox,
+     vertex.label.color = "", edge.width = 0.5, edge.curved = F, layout = lox,
      xlim = c(-124.45, -124.2), ylim = c(42.1, 42.325), rescale = FALSE, add = TRUE)
 legend(x= 0,1, y=-0.1, legend = CounColorx[,1], pch=21,  col="black", pt.bg=CounColorx[,2], pt.cex=2,cex=.8, bty="n", ncol=1)
 
