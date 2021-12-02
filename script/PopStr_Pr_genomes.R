@@ -202,10 +202,10 @@ GRPHy <- asIgraph(na1_tree_g)
 V(GRPHy)$vertex.names
 
 #----- iGraph
-# x = eu1_gdnet
-# y = na1_gdnet
-# GRPHx <- graph_from_data_frame(x, directed = FALSE)
-# GRPHy <- graph_from_data_frame(y, directed = FALSE)
+x = eu1_gdnet
+y = na1_gdnet
+GRPHx <- graph_from_data_frame(x, directed = FALSE)
+GRPHy <- graph_from_data_frame(y, directed = FALSE)
 # adding colors and attributes
 rbPal <- colorRampPalette(c("grey", "black"))
 counPal <- colorRampPalette(c("red", "yellow", "blue", "white", "brown"), bias = 1)
@@ -240,8 +240,8 @@ hist(E(GRPHy)$xx, breaks= 100, xlim = c(0,0.1))
 abline(v=0.08, col="red")
 dev.off()
 # Select conditionals
-condx  <- E(GRPHx)[E(GRPHx)$xx >  0.08]
-condy  <- E(GRPHy)[E(GRPHy)$xx >  0.08]
+condx  <- E(GRPHx)[E(GRPHx)$xx >  0.04]
+condy  <- E(GRPHy)[E(GRPHy)$xx >  0.04]
 # Remove edges nodes
 GRPHx <- igraph::delete.edges(GRPHx, condx)
 GRPHy <- igraph::delete.edges(GRPHy, condy)
@@ -266,7 +266,6 @@ library(rworldxtra)
 worldmap <- getMap(resolution = "high") #grab the world map
 NorthAmerica <- worldmap[which(worldmap$REGION == "North America"),] # grab north america
 
-
 plot(GRPHx,  edge.arrow.size=.05, vertex.label.cex=.3, vertex.label.color='black',
      edge.curved=F, edge.width=0.2, layout=layout_with_kk)
 
@@ -283,13 +282,13 @@ plot(NorthAmerica, xlim = c(-124.5, -124.25), ylim = c(42.275, 42.35))
 plot(GRPHx, vertex.size = 0.1, edge.arrow.size =.05, vertex.label.cex= 0.3,
      vertex.label.color = "", edge.width = 0.5, edge.curved = F, layout = lox,
      xlim = c(-124.45, -124.2), ylim = c(42.1, 42.325), rescale = FALSE, add = TRUE)
-legend(x= 0,1, y=-0.1, legend = CounColorx[,1], pch=21,  col="black", pt.bg=CounColorx[,2], pt.cex=2,cex=.8, bty="n", ncol=1)
+legend(x= c(-124.45, -124.2), y=c(42.1, 42.325), legend = CounColorx[,1], pch=21,  col="black", pt.bg=CounColorx[,2], pt.cex=2,cex=.8, bty="n", ncol=1)
 
 plot(NorthAmerica, xlim = c(-124.5, -124.1), ylim = c(42.125, 42.129))
-plot(GRPHy, vertex.size = 0.1, edge.arrow.size =.05, vertex.label.cex= 0.3,
+plot(GRPHy, vertex.size = 0.3, edge.arrow.size =.05, vertex.label.cex= 0.3,
      vertex.label.color = "", edge.width = 0.2, edge.curved = F, layout = loy,
      xlim = c(-124.45, -124.2), ylim = c(42.1, 42.2), rescale = FALSE, add = TRUE)
-legend(x= 0.9, y= -0.9, legend = CounColory[,1], pch=21,  col="black", pt.bg=CounColory[,2], pt.cex=2,cex=.8, bty="n", ncol=1)
+legend(x=  c(-124.45, -124.2), y = c(42.1, 42.2), legend = CounColory[,1], pch=21,  col="black", pt.bg=CounColory[,2], pt.cex=2,cex=.8, bty="n", ncol=1)
 
 ## very important to set layout to "lo" (or whatever you named it above), rescale = FALSE, add = TRUE
 # GRPHx
