@@ -23,6 +23,11 @@ NJ tree using the original genetic Distances
 Trees rescaled using the Grafen method
 ![Grafen tree](https://github.com/ricardoi/genedis_networks/blob/main/Figures/EU1-NA1_Grafen_trees.png)
 
+**EU1** trees rescaled with the Grafen method with years
+![EU1](https://github.com/ricardoi/genedis_networks/blob/main/Figures/eu1_gendis_Grafen_brln.pdf)
+**NA1** trees rescaled with the Grafen method with years
+![NA1](https://github.com/ricardoi/genedis_networks/blob/main/Figures/na1_gendis_Grafen_brln.pdf)
+
 ## Branch lengths from Grafen tree
 Visualizing the branch length distribution of _P. ramorum_ trees
 ![Branch length](https://github.com/ricardoi/genedis_networks/blob/main/Figures/EU1-NA1_branchlenghts_Grafen_tree.png)
@@ -34,6 +39,3 @@ The phylogenetic tree was visualized as a network, tips and nodes are indicated 
 ## Phylogenetic network prunned
 Removing branches with distances less than 0.08
 ![prunned network](https://github.com/ricardoi/genedis_networks/blob/main/Figures/PhylogeneticNetwork_prunned_0.08.png)
-
-> Notes:
-`$PATH` to folders `/dfs/Grunwald_Lab/lab_collabs/diagnostic_assays/genome_data/`
