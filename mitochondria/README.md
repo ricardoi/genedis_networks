@@ -1,7 +1,9 @@
 # Mitochondria analysis
 
+Aligning 283 mitochondrial genomes using muscle, getting an error.
+
 ```bash
-muscle -in curryco_mt.fasta -out Pra_mytogenome_aln.fasta -maxiters 3
+$ muscle -in curryco_mt.fasta -out Pra_mytogenome_aln.fasta -maxiters 3
 
 MUSCLE v3.8.31 by Robert C. Edgar
 
