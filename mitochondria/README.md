@@ -23,3 +23,9 @@ curryco_mt 283 seqs, max length 39394, avg  length 39317
 *** ERROR ***  MSA::GetLetter(0/1, 0/904)='�'/4294967295
 12595.935u 7.760s 3:30:08.71 99.9%	0+0k 23816+0io 1pf+0w
 ```
+Using clustalo
+```bash
+$ clustalo -i Pram_mitogenome.fasta -o Pram_mitogenome_aln.fas --iter=3 --threads=20
+# SGE submission 
+SGE_Batch -c 'clustalo -i Pram_mitogenome.fasta -o Pram_mitogenome_aln.fas --iter=3 --threads=20 -v' -P 20 -q bpp@anduin -r clustal-mitogeno
+```
