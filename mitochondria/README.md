@@ -26,6 +26,7 @@ The dated tips showed some temporal signal using the correlation function **Corr
 |R Squared  | 0.2781 | 0.3397 |
 |Residual Mean Square| 5.752e-8| 6.2831 |
 
+#![tempest_results](https://github.com/ricardoi/genedis_networks/blob/main/mitochondria/figures/Pram_295_tempest.png)
 
 
 
