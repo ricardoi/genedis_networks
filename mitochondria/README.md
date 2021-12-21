@@ -29,3 +29,11 @@ $ clustalo -i Pram_mitogenome.fasta -o Pram_mitogenome_aln.fas --iter=3 --thread
 # SGE submission 
 SGE_Batch -c 'clustalo -i Pram_mitogenome.fasta -o Pram_mitogenome_aln.fas --iter=3 --threads=20 -v' -P 20 -q bpp@anduin -r clustal-mitogeno
 ```
+
+
+### Installing BEAGLE and BEAST
+
+```bash 
+cmake -DCMAKE_INSTALL_PREFIX:PATH=$HOME -DBUILD_OPENCL=OFF -DCMAKE_CC_COMPILER=/usr/bin/cuda-gcc -DCMAKE_CXX_COMPILER=/usr/bin/cuda-g++ ..
+```
+
