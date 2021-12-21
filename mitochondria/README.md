@@ -26,8 +26,11 @@ curryco_mt 283 seqs, max length 39394, avg  length 39317
 Using clustalo
 ```bash
 $ clustalo -i Pram_mitogenome.fasta -o Pram_mitogenome_aln.fas --iter=3 --threads=20
-# SGE submission 
-SGE_Batch -c 'clustalo -i Pram_mitogenome.fasta -o Pram_mitogenome_aln.fas --iter=3 --threads=20 -v' -P 20 -q bpp@anduin -r clustal-mitogeno
+# SGE submission EU1
+SGE_Batch -c 'clustalo -i Pram_mitogenome_EU1.fasta -o Pram_mitogenome_EU1-aln.fas --iter=10 --threads=12 -v' -P 12 -q bpp -r clustal-EU1mg
+# SGE submission NA1
+SGE_Batch -c 'clustalo -i Pram_mitogenome_NA1.fasta -o Pram_mitogenome_NA1-aln.fas --iter=10 --threads=12 -v' -P 12 -q bpp -r clustal-NA1mg
+
 ```
 
 
