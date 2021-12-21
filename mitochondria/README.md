@@ -36,4 +36,6 @@ SGE_Batch -c 'clustalo -i Pram_mitogenome.fasta -o Pram_mitogenome_aln.fas --ite
 ```bash 
 cmake -DCMAKE_INSTALL_PREFIX:PATH=$HOME -DBUILD_OPENCL=OFF -DCMAKE_CC_COMPILER=/usr/bin/cuda-gcc -DCMAKE_CXX_COMPILER=/usr/bin/cuda-g++ ..
 ```
+It was installed in `$HOME`, and I had to run it from `/bin` and it worked.
+
 
