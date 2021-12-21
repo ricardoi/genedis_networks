@@ -14,7 +14,7 @@ SGE_Batch -c 'clustalo -i Pram_mitogenome_NA1.fasta -o Pram_mitogenome_NA1-aln.f
 > The genome lenght of the mitochondrial genome was 39,739 bp with a mean lenght of 39,317, 96% of identical sites and a pairwise identity of 99.%. The GC content rounds about 22%.
 
 The Neighbor-joining tree was used to calculate the temporal signal using the program [TemPest](https://beast.community/tempest). 
-The dated tips showed some temporal signal using the correlation function **Correlation Coefficient (CC):** 0.582 fitting the best root, and 0.527 without it. The CC for residual mean squared was 0.527, and was reduced to 0.309 while fitting the best root. 
+The dated tips showed some temporal signal using the correlation function **Correlation Coefficient (CC):** 0.582 fitting the best root, and 0.527 without it. The CC for residual mean squared was 0.527, and was reduced to 0.309 while fitting the best root.\
 **Correlation Function results:**
 | Dated tips | no-root | best-fitting root |
 |--|--|--|
