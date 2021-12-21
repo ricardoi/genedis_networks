@@ -22,7 +22,7 @@ The dated tips showed some temporal signal using the correlation function **Corr
 | date range | 18     | 18 |
 | slope(rate)| 2.004e-5| 2.420e-5 |
 |X-interception | 1988 | 1965 |
-|Correlation Coefficient | 0.5273|
+|Correlation Coefficient | 0.5273| 0.5828|
 |R Squared  | 0.2781 | 0.3397 |
 |Residual Mean Square| 5.752e-8| 6.2831 |
 
