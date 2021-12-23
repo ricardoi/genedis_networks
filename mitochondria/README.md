@@ -29,7 +29,7 @@ The dated tips showed some temporal signal using the correlation function **Corr
 #![tempest_results](https://github.com/ricardoi/genedis_networks/blob/main/mitochondria/figures/Pram_295_tempest.png)
 
 
-
+Important reading to set [prior selection](https://taming-the-beast.org/tutorials/Prior-selection/) in beast.
 
 ## Troubleshooting programs and installing them
 ```bash
