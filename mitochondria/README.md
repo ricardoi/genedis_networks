@@ -12,6 +12,7 @@ SGE_Batch -c 'clustalo -i Pram_mitogenome_NA1.fasta -o Pram_mitogenome_NA1-aln.f
 
 ```
 > The genome lenght of the mitochondrial genome was 39,739 bp with a mean lenght of 39,317, 96% of identical sites and a pairwise identity of 99.%. The GC content rounds about 22%.
+> Results: EU1 failed, running again on 30th. NA1 alignment done.
 
 ## Temporal signal test:
 The Neighbor-joining tree was used to calculate the temporal signal using the program [TemPest](https://beast.community/tempest). 
