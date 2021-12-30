@@ -32,7 +32,14 @@ The dated tips showed some temporal signal using the correlation function **Corr
 
 Important reading to set [prior selection](https://taming-the-beast.org/tutorials/Prior-selection/) in beast.
 
-## Troubleshooting programs and installing them
+
+# Maximum Likelihood
+IQTREE maximum likelihood, standard command `iqtree2 -s sequence_file.fas -m TEST -B 1000` testing for evolutionary model, with 1000 bootstraps.
+```bash 
+SGE_Batch -c 'iqtree2 -s Pram_mitogenome_NA1-aln.fas -m TEST -B 1000 -T 8 -v' -P 8 -q bpp -r IQTR-NA1
+```
+
+## Programs Troubleshooting and Installations
 ```bash
 $ muscle -in curryco_mt.fasta -out Pra_mytogenome_aln.fasta -maxiters 3
 
