@@ -1,0 +1,262 @@
+#NEXUS
+begin taxa;
+	dimensions ntax=160;
+	taxlabels
+	7613-A1
+	7613-A10
+	7613-A11
+	7613-A12
+	7613-A2
+	7613-A3
+	7613-A4
+	7613-A5
+	7613-A6
+	7613-A7
+	7613-A8
+	7613-A9
+	7613-B1
+	7613-B10
+	7613-B11
+	7613-B12
+	7613-B2
+	7613-B3
+	7613-B4
+	7613-B5
+	7613-B6
+	7613-B7
+	7613-B8
+	7613-B9
+	7613-C1
+	7613-C10
+	7613-C11
+	7613-C12
+	7613-C2
+	7613-C3
+	7613-C4
+	7613-C5
+	7613-C6
+	7613-C7
+	7613-C8
+	7613-C9
+	7613-D1
+	7613-D10
+	7613-D11
+	7613-D12
+	7613-D2
+	7613-D3
+	7613-D4
+	7613-D5
+	7613-D6
+	7613-D7
+	7613-D8
+	7613-D9
+	7613-E1
+	7613-E10
+	7613-E11
+	7613-E12
+	7613-E2
+	7613-E3
+	7613-E4
+	7613-E5
+	7613-E6
+	7613-E7
+	7613-E8
+	7613-E9
+	7613-F1
+	7613-F10
+	7613-F11
+	7613-F12
+	7613-F2
+	7613-F3
+	7613-F4
+	7613-F5
+	7613-F6
+	7613-F7
+	7613-F8
+	7613-F9
+	7613-G1
+	7613-G10
+	7613-G11
+	7613-G12
+	7613-G2
+	7613-G3
+	7613-G4
+	7613-G5
+	7613-G6
+	7613-G7
+	7613-G8
+	7613-G9
+	7613-H1
+	7613-H10
+	7613-H11
+	7613-H12
+	7613-H2
+	7613-H3
+	7613-H4
+	7613-H5
+	7613-H6
+	7613-H7
+	7613-H8
+	7613-H9
+	7881-A10
+	7881-A11
+	7881-A4
+	7881-A5
+	7881-A6
+	7881-A7
+	7881-A8
+	7881-A9
+	7881-B10
+	7881-B11
+	7881-B4
+	7881-B5
+	7881-B6
+	7881-B7
+	7881-B8
+	7881-B9
+	7881-C10
+	7881-C11
+	7881-C4
+	7881-C5
+	7881-C6
+	7881-C7
+	7881-C8
+	7881-C9
+	7881-D10
+	7881-D11
+	7881-D4
+	7881-D5
+	7881-D6
+	7881-D7
+	7881-D8
+	7881-D9
+	7881-E10
+	7881-E11
+	7881-E4
+	7881-E5
+	7881-E6
+	7881-E7
+	7881-E8
+	7881-E9
+	7881-F10
+	7881-F11
+	7881-F4
+	7881-F5
+	7881-F6
+	7881-F7
+	7881-F8
+	7881-F9
+	7881-G10
+	7881-G11
+	7881-G4
+	7881-G5
+	7881-G6
+	7881-G7
+	7881-G8
+	7881-G9
+	7881-H10
+	7881-H3
+	7881-H4
+	7881-H5
+	7881-H6
+	7881-H7
+	7881-H8
+	7881-H9
+;
+end;
+
+begin trees;
+	tree tree_1 = [&R] (7613-A1:5.1E-5,(((((((((((((((((((((((((((((((((((((((((((((((7613-A2:2.11E-4,7613-H4:3.17E-4)[&bs=56]:3.1E-5,7613-A5:2.82E-4)[&bs=33]:2.0E-6,7881-A11:4.4E-4)[&bs=43]:3.7E-5,(7613-D5:4.65E-4,7613-G11:3.32E-4)[&bs=59]:1.0E-6)[&bs=19]:3.0E-6,7613-C2:2.0E-6)[&bs=18]:2.0E-6,7613-B2:1.0E-6)[&bs=19]:3.0E-6,7881-A7:1.07E-4)[&bs=42]:1.0E-6,7613-F2:2.0E-6)[&bs=18]:2.0E-6,7613-H3:1.0E-6)[&bs=13]:1.02E-4,((7613-A6:2.76E-4,7881-F6:1.82E-4)[&bs=90]:7.8E-5,7613-G1:2.0E-6)[&bs=52]:2.7E-5)[&bs=0]:3.0E-6,7881-D9:1.0E-6)[&bs=1]:2.0E-6,7613-G8:1.0E-6)[&bs=5]:3.0E-6,7881-C4:1.0E-6)[&bs=17]:3.0E-6,7881-C5:1.0E-6)[&bs=3]:2.0E-6,7613-B10:1.0E-6)[&bs=2]:2.0E-6,(7613-C12:3.76E-4,(7881-B5:1.58E-4,7881-D7:1.3E-4)[&bs=59]:2.1E-5)[&bs=68]:5.4E-5)[&bs=7]:2.0E-6,((7613-C9:1.0E-6,(7881-A9:1.85E-4,7881-G8:6.61E-4)[&bs=65]:7.2E-5)[&bs=55]:3.0E-6,7881-A4:1.0E-6)[&bs=55]:2.6E-5)[&bs=8]:3.0E-6,((7881-B10:3.0E-6,7881-E8:5.1E-5)[&bs=79]:2.0E-6,7881-C11:2.5E-5)[&bs=70]:2.5E-5)[&bs=12]:2.0E-6,((7613-E5:3.37E-4,7613-G7:1.29E-4)[&bs=84]:2.3E-5,7881-F7:4.55E-4)[&bs=69]:2.6E-5)[&bs=42]:2.0E-6,7613-G6:1.0E-6)[&bs=4]:2.0E-6,7881-H9:1.0E-6)[&bs=2]:2.0E-6,7613-G3:1.0E-6)[&bs=0]:1.0E-6,7881-G11:1.0E-6)[&bs=1]:2.0E-6,7613-B3:1.0E-6)[&bs=6]:2.0E-6,7881-E10:2.5E-5)[&bs=19]:1.82E-4,(((((7613-A7:2.31E-4,7881-F9:2.2E-5)[&bs=22]:2.0E-6,(7613-F9:5.1E-5,7881-F4:1.52E-4)[&bs=84]:2.5E-5)[&bs=23]:2.4E-5,((((((((((((((((7613-A11:7.3E-5,(7881-G9:3.7E-5,7881-H3:5.0E-5)[&bs=93]:3.5E-5)[&bs=40]:2.0E-6,7613-F7:2.0E-6)[&bs=45]:3.0E-6,7881-A6:3.0E-6)[&bs=45]:1.0E-5,((7613-G12:2.6E-5,7881-C7:1.0E-6)[&bs=72]:3.0E-6,7881-B4:1.01E-4)[&bs=62]:2.5E-5)[&bs=26]:1.0E-6,((7613-A12:1.02E-4,((7613-B5:1.47E-4,7613-G5:1.56E-4)[&bs=65]:4.4E-5,7881-C10:1.36E-4)[&bs=60]:4.4E-5)[&bs=47]:2.0E-6,7613-H10:2.0E-6)[&bs=54]:3.7E-5)[&bs=29]:1.06E-4,((7613-B6:2.5E-5,7613-D1:1.0E-6)[&bs=96]:2.0E-6,7613-H11:2.83E-4)[&bs=61]:3.0E-5)[&bs=14]:2.0E-6,((7613-C11:4.43E-4,7881-G4:2.66E-4)[&bs=25]:2.0E-6,(7613-E12:6.35E-4,7881-D8:1.29E-4)[&bs=24]:4.9E-5)[&bs=24]:2.5E-5)[&bs=6]:2.6E-5,7613-E4:1.0E-6)[&bs=8]:2.0E-6,7613-G4:1.0E-6)[&bs=0]:5.0E-6,7613-D12:2.3E-4)[&bs=2]:2.8E-5,(7613-H7:0.0,7881-F11:0.0):1.0E-6)[&bs=3]:2.0E-6,7881-B11:1.0E-6)[&bs=13]:3.0E-6,7613-E8:1.0E-6)[&bs=18]:3.0E-6,(7881-D6:2.5E-5,7881-G10:5.1E-5)[&bs=69]:2.5E-5)[&bs=14]:5.0E-6,(7613-C5:2.57E-4,7881-E9:2.0E-6)[&bs=59]:2.5E-5)[&bs=25]:2.3E-5,((7613-C10:7.6E-5,(7613-E7:1.29E-4,7881-E4:2.32E-4)[&bs=77]:2.3E-5)[&bs=49]:2.0E-6,7613-F12:4.76E-4)[&bs=51]:2.5E-5)[&bs=31]:9.0E-6)[&bs=0]:3.0E-6,(7613-D7:1.02E-4,(7613-H9:1.0E-6,(7881-D10:6.7E-5,7881-E6:1.77E-4)[&bs=53]:3.0E-6)[&bs=51]:3.0E-6)[&bs=51]:3.2E-5)[&bs=2]:3.0E-6,((7881-E11:1.0E-6,7881-H10:1.0E-6)[&bs=78]:2.0E-6,(7881-G5:2.82E-4,7881-H8:1.01E-4)[&bs=52]:3.0E-6)[&bs=51]:2.4E-5)[&bs=6]:2.0E-6)[&bs=4]:1.0E-6,(7613-E10:1.27E-4,7881-B8:2.0E-6)[&bs=55]:2.5E-5)[&bs=6]:2.7E-5,(7613-C6:2.33E-4,7881-H4:5.2E-5)[&bs=26]:2.3E-5)[&bs=4]:2.0E-6,7613-H12:2.5E-5)[&bs=1]:9.0E-6,7613-E2:1.0E-6)[&bs=2]:2.0E-6,(((((7613-B9:5.1E-5,7613-E9:1.54E-4)[&bs=57]:2.5E-5,(7613-C8:2.14E-4,7613-E1:5.1E-5)[&bs=72]:2.5E-5)[&bs=11]:2.0E-6,(7613-C4:2.09E-4,7613-C7:1.06E-4)[&bs=58]:2.1E-5)[&bs=11]:2.0E-6,((7613-F4:1.54E-4,7881-D4:2.31E-4)[&bs=50]:3.0E-6,(7613-G10:5.1E-5,7613-H2:7.6E-5)[&bs=50]:2.0E-6)[&bs=56]:2.4E-5)[&bs=11]:3.0E-6,7613-D4:1.78E-4)[&bs=16]:2.5E-5)[&bs=3]:6.8E-5,7881-B6:1.01E-4)[&bs=11]:2.0E-6,7881-G6:7.5E-5)[&bs=28]:2.0E-6,(7881-A8:1.53E-4,7881-G7:3.0E-6)[&bs=55]:2.6E-5)[&bs=29]:3.0E-6,((7613-A10:2.0E-6,7881-F8:1.89E-4)[&bs=55]:3.0E-6,7613-D11:1.02E-4)[&bs=52]:2.5E-5)[&bs=27]:2.0E-6,(7613-D6:1.28E-4,(7613-G9:1.0E-6,(7881-B7:2.4E-5,7881-C6:2.5E-5)[&bs=95]:2.4E-5)[&bs=66]:2.0E-6)[&bs=60]:2.4E-5)[&bs=12]:2.0E-6,(((7613-A4:7.7E-5,7613-H6:2.5E-5)[&bs=71]:2.4E-5,7613-F11:1.0E-6)[&bs=50]:2.0E-6,7881-D11:7.64E-4)[&bs=41]:2.4E-5)[&bs=27]:3.0E-6,(((((((((((((7613-A9:7.8E-5,7613-E6:1.28E-4)[&bs=56]:2.4E-5,7613-B4:5.2E-5)[&bs=48]:2.4E-5,7613-F6:7.5E-5)[&bs=48]:2.0E-5,(7881-E7:1.03E-4,7881-H5:5.1E-5)[&bs=71]:2.4E-5)[&bs=17]:2.0E-6,7613-D8:1.27E-4)[&bs=18]:2.0E-6,(((((7613-B12:1.28E-4,7613-F3:3.0E-6)[&bs=91]:2.5E-5,7613-H8:1.01E-4)[&bs=74]:2.0E-6,7613-H5:7.6E-5)[&bs=71]:2.4E-5,(7881-A5:1.01E-4,7881-C8:7.6E-5)[&bs=78]:2.2E-5)[&bs=45]:2.0E-6,7613-D2:5.0E-5)[&bs=45]:2.0E-6)[&bs=24]:2.0E-6,((7613-E3:7.7E-5,7613-F5:7.6E-5)[&bs=71]:2.0E-6,7613-E11:1.53E-4)[&bs=71]:2.5E-5)[&bs=20]:1.3E-5,7881-F5:5.0E-5)[&bs=38]:2.0E-6,(7881-H6:1.53E-4,7881-H7:1.53E-4)[&bs=60]:2.4E-5)[&bs=43]:7.0E-6,(7613-D10:1.78E-4,(7613-F10:7.5E-5,(7881-C9:1.02E-4,7881-F10:1.02E-4)[&bs=99]:2.4E-5)[&bs=99]:3.0E-6)[&bs=65]:2.5E-5)[&bs=40]:2.0E-6,7613-H1:1.77E-4)[&bs=28]:3.0E-6,7613-B7:1.27E-4)[&bs=35]:2.0E-6,7613-F8:1.0E-4)[&bs=35]:4.6E-5)[&bs=48]:3.7E-5,7881-D5:1.0E-6)[&bs=23]:2.0E-6,7613-A8:1.0E-6)[&bs=25]:3.0E-6,7613-A3:1.0E-6)[&bs=24]:3.0E-6,7881-E5:5.0E-5)[&bs=27]:1.1E-5,7613-G2:1.0E-6)[&bs=35]:1.1E-5,7613-C1:2.5E-5)[&bs=0]:2.0E-6,7613-C3:2.0E-6)[&bs=9]:2.0E-6,7613-D3:2.6E-5)[&bs=4]:3.0E-6,7613-F1:2.5E-5)[&bs=10]:2.0E-6,((7613-B1:1.0E-6,((7613-B8:1.0E-6,7613-D9:5.0E-5)[&bs=73]:2.5E-5,(7881-A10:2.5E-5,7881-B9:2.0E-6)[&bs=27]:3.0E-6)[&bs=19]:1.0E-6)[&bs=34]:1.0E-6,7613-B11:1.0E-6)[&bs=51]:4.0E-6);
+end;
+
+begin figtree;
+	set appearance.backgroundColorAttribute="Default";
+	set appearance.backgroundColour=#ffffff;
+	set appearance.branchColorAttribute="User selection";
+	set appearance.branchColorGradient=false;
+	set appearance.branchLineWidth=1.0;
+	set appearance.branchMinLineWidth=0.0;
+	set appearance.branchWidthAttribute="Fixed";
+	set appearance.foregroundColour=#000000;
+	set appearance.hilightingGradient=false;
+	set appearance.selectionColour=#2d3680;
+	set branchLabels.colorAttribute="User selection";
+	set branchLabels.displayAttribute="bs";
+	set branchLabels.fontName="sansserif";
+	set branchLabels.fontSize=8;
+	set branchLabels.fontStyle=0;
+	set branchLabels.isShown=true;
+	set branchLabels.significantDigits=4;
+	set layout.expansion=0;
+	set layout.layoutType="RECTILINEAR";
+	set layout.zoom=0;
+	set legend.attribute=null;
+	set legend.fontSize=10.0;
+	set legend.isShown=false;
+	set legend.significantDigits=4;
+	set nodeBars.barWidth=4.0;
+	set nodeBars.displayAttribute=null;
+	set nodeBars.isShown=false;
+	set nodeLabels.colorAttribute="User selection";
+	set nodeLabels.displayAttribute="Node ages";
+	set nodeLabels.fontName="sansserif";
+	set nodeLabels.fontSize=8;
+	set nodeLabels.fontStyle=0;
+	set nodeLabels.isShown=false;
+	set nodeLabels.significantDigits=4;
+	set nodeShapeExternal.colourAttribute=null;
+	set nodeShapeExternal.isShown=false;
+	set nodeShapeExternal.minSize=10.0;
+	set nodeShapeExternal.scaleType=Width;
+	set nodeShapeExternal.shapeType=Circle;
+	set nodeShapeExternal.size=4.0;
+	set nodeShapeExternal.sizeAttribute=null;
+	set nodeShapeInternal.colourAttribute=null;
+	set nodeShapeInternal.isShown=true;
+	set nodeShapeInternal.minSize=10.0;
+	set nodeShapeInternal.scaleType=Width;
+	set nodeShapeInternal.shapeType=Circle;
+	set nodeShapeInternal.size=4.0;
+	set nodeShapeInternal.sizeAttribute="Fixed";
+	set polarLayout.alignTipLabels=false;
+	set polarLayout.angularRange=0;
+	set polarLayout.rootAngle=0;
+	set polarLayout.rootLength=100;
+	set polarLayout.showRoot=true;
+	set radialLayout.spread=0.0;
+	set rectilinearLayout.alignTipLabels=false;
+	set rectilinearLayout.curvature=0;
+	set rectilinearLayout.rootLength=100;
+	set scale.offsetAge=0.0;
+	set scale.rootAge=1.0;
+	set scale.scaleFactor=1.0;
+	set scale.scaleRoot=false;
+	set scaleAxis.automaticScale=true;
+	set scaleAxis.fontSize=8.0;
+	set scaleAxis.isShown=false;
+	set scaleAxis.lineWidth=1.0;
+	set scaleAxis.majorTicks=1.0;
+	set scaleAxis.minorTicks=0.5;
+	set scaleAxis.origin=0.0;
+	set scaleAxis.reverseAxis=false;
+	set scaleAxis.showGrid=true;
+	set scaleBar.automaticScale=true;
+	set scaleBar.fontSize=10.0;
+	set scaleBar.isShown=true;
+	set scaleBar.lineWidth=1.0;
+	set scaleBar.scaleRange=0.0;
+	set tipLabels.colorAttribute="User selection";
+	set tipLabels.displayAttribute="Names";
+	set tipLabels.fontName="sansserif";
+	set tipLabels.fontSize=8;
+	set tipLabels.fontStyle=0;
+	set tipLabels.isShown=true;
+	set tipLabels.significantDigits=4;
+	set trees.order=true;
+	set trees.orderType="increasing";
+	set trees.rooting=true;
+	set trees.rootingType="Midpoint";
+	set trees.transform=false;
+	set trees.transformType="cladogram";
+end;
+
