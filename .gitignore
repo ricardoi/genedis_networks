@@ -1,0 +1,11 @@
+#ignore files in data
+data/*.txt
+data/*.csv
+#eu1_gendists.txt
+#hazel_population_data.wgs.csv
+#eu1_gendists_long.txt
+#na1_gendists.txt
+#hazel_population_data.csv
+#na1_gendists_long.txt
+.Rproj.user
+.DS_Store

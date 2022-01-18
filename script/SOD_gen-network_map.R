@@ -31,3 +31,4 @@ ggplot(data = world) +
   geom_point(dat = dat, aes(x = Lon, y = Lat, col = Lin), size = 2,
              shape = 1) +
   coord_sf(xlim = c(-124.45, -124.2), ylim = c(42.05, 42.4), expand = T)
+
