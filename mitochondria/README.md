@@ -29,6 +29,10 @@ The dated tips showed some temporal signal using the correlation function **Corr
 
 #![tempest_results](https://github.com/ricardoi/genedis_networks/blob/main/mitochondria/figures/Pram_295_tempest.png)
 
+### Results for Lineages NA1 & EU1
+
+#![tempest_results2](https://github.com/ricardoi/genedis_networks/blob/main/mitochondria/figures/NA1-EU1_tempest_results.png)
+
 
 Important reading to set [prior selection](https://taming-the-beast.org/tutorials/Prior-selection/) in beast.
 
