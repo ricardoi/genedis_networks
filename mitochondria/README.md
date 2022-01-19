@@ -27,13 +27,33 @@ The dated tips showed some temporal signal using the correlation function **Corr
 |R Squared  | 0.2781 | 0.3397 |
 |Residual Mean Square| 5.752e-8| 6.2831 |
 
-#![tempest_results](https://github.com/ricardoi/genedis_networks/blob/main/mitochondria/figures/Pram_295_tempest.png)
+![tempest_results](https://github.com/ricardoi/genedis_networks/blob/main/mitochondria/figures/Pram_295_tempest.png)
 
 ### Results for Lineages NA1 & EU1
+I used a maximum likelihood tree to calculate the temporal signal using the program [TemPest](https://beast.community/tempest) for both lineages, NA1 and EU1. The results indicated that there is no temporal signal to calculate a molecular clock. 
 
-#![tempest_results2](https://github.com/ricardoi/genedis_networks/blob/main/mitochondria/figures/NA1-EU1_tempest_results.png)
+**Correlation Function results:**
 
+| Dated tips | no-root | best-fitting root |
+|--|--|--|
+|            | NA1     |                   |
+| date range | 4     | 4 |
+| slope(rate)| 1.51e-5| 9.846e-5 |
+|X-interception | 1988 | 1906 |
+|Correlation Coefficient | 7.806e-2 | 5.867e-2|
+|R Squared  | 6.094e-3 | 3.443e-3 |
+|Residual Mean Square| 9.082e-8| 6.772e-8 |
+|            | EU1     |                   |
+| date range | 3     | 3 |
+| slope(rate)| 2.95e-5| 7.132e-5 |
+|X-interception | 2005 | 1972 |
+|Correlation Coefficient | 0.111| 3.888e-2|
+|R Squared  | 1.239e-2 | 1.511e-3 |
+|Residual Mean Square| 5.260e-8| 2.549e-8 |
 
+![tempest_results2](https://github.com/ricardoi/genedis_networks/blob/main/mitochondria/figures/NA1-EU1_tempest_results.png)
+
+##### Prior selection 
 Important reading to set [prior selection](https://taming-the-beast.org/tutorials/Prior-selection/) in beast.
 
 
